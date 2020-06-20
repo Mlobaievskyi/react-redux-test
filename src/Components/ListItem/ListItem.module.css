@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: var(--shadow) var(--shadow-color);
+  cursor: pointer;
+
+  margin-bottom: 20px;
+  border-left: 2px solid var(--white-color);
+}
+
+.selectedItem {
+  border-left: 2px solid var(--main-color);
+}
+
+.leftSide {
+  display: flex;
+  align-items: center;
+}
+
+.radioBtn {
+  padding: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+
+  margin-bottom: 10px;
+}

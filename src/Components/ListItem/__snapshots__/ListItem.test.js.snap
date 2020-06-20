@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem component tests Link changes the class when hovered 1`] = `
+<div
+  className="container"
+  onClick={[Function]}
+>
+  <div
+    className="leftSide"
+  >
+    <label
+      className="ant-radio-wrapper"
+    >
+      <span
+        className="ant-radio"
+        style={Object {}}
+      >
+        <input
+          checked={false}
+          className="ant-radio-input"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="radio"
+        />
+        <span
+          className="ant-radio-inner"
+        />
+      </span>
+    </label>
+    <div
+      className="info"
+    >
+      <span
+        className="name"
+      >
+        Test name
+      </span>
+      <span>
+        Feb-01 00:00
+      </span>
+    </div>
+  </div>
+  <div
+    className="actions"
+  />
+</div>
+`;
+
+exports[`ListItem component tests Link changes the class when hovered 2`] = `
+<div
+  className="container"
+  onClick={[Function]}
+>
+  <div
+    className="leftSide"
+  >
+    <label
+      className="ant-radio-wrapper"
+    >
+      <span
+        className="ant-radio"
+        style={Object {}}
+      >
+        <input
+          checked={false}
+          className="ant-radio-input"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="radio"
+        />
+        <span
+          className="ant-radio-inner"
+        />
+      </span>
+    </label>
+    <div
+      className="info"
+    >
+      <span
+        className="name"
+      >
+        Test name
+      </span>
+      <span>
+        Feb-01 00:00
+      </span>
+    </div>
+  </div>
+  <div
+    className="actions"
+  />
+</div>
+`;
