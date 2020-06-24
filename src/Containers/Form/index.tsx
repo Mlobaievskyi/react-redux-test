@@ -1,5 +1,3 @@
-// @flow
-
 import React, { useState, useCallback } from "react";
 import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";

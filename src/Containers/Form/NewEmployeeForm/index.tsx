@@ -1,5 +1,3 @@
-// @flow
-
 import React, { useCallback } from "react";
 import { Form, Input, Button } from "antd";
 import { useDispatch } from "react-redux";

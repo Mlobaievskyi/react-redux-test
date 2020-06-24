@@ -1,5 +1,3 @@
-// @flow
-
 import { combineReducers } from "redux";
 
 import form from "./formReducer";

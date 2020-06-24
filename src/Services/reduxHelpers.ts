@@ -1,8 +1,7 @@
-export const createReducer = (
-  initialState: { items: Object[] },
-  handlers: { [x: string]: any },
-  finalizer?: (arg0: any) => any
-): Object => (state: any, action: any) => {
+export const createReducer = (initialState: any, handlers: any) => (
+  state = initialState,
+  action: any
+) => {
   if (action.type) {
     const handler = handlers[action.type];
     if (handler) {
@@ -10,9 +9,8 @@ export const createReducer = (
       if (result === null) {
         return state;
       }
-      if (finalizer) {
-        return finalizer({ ...state, ...result });
-      }
+
+      return { ...state, ...result };
     }
   }
   return state;
