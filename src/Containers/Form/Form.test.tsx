@@ -1,6 +1,7 @@
 // @flow
 
-import React, { useCallback } from "react";
+import React from "react";
+import { mocked } from "ts-jest/utils";
 import { shallow, mount } from "enzyme";
 import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,19 +51,19 @@ describe("Form component", () => {
   const stopPropagationSpy = jest.fn();
 
   beforeEach(() => {
-    useDispatch.mockReturnValue((x) => x);
+    mocked(useDispatch).mockReturnValue((x) => x);
   });
 
   afterEach(() => {
-    useDispatch.mockReset();
-    useSelector.mockReset();
-    FormActions.removeItem.mockReset();
-    FormActions.changeSorting.mockReset();
+    mocked(useDispatch).mockReset();
+    mocked(useSelector).mockReset();
+    mocked(FormActions.removeItem).mockReset();
+    mocked(FormActions.changeSorting).mockReset();
     stopPropagationSpy.mockReset();
   });
 
   test("render itself", () => {
-    useSelector.mockImplementation((fn) => fn(mockedEmptyReduxState));
+    mocked(useSelector).mockImplementation((fn) => fn(mockedEmptyReduxState));
     const component = shallow(<Form />);
     const ListItems = component.find(ListItem);
     const SortItems = component.find(Sort);
@@ -71,13 +72,13 @@ describe("Form component", () => {
     expect(ListItems.length).toEqual(0);
     expect(SortItems.length).toEqual(0);
     expect(NewEmployeeFormComponent.length).toEqual(1);
-    expect(useSelector.mock.calls.length).toBe(2);
+    expect(mocked(useSelector).mock.calls.length).toBe(2);
     expect(component).toHaveLength(1);
     component.unmount();
   });
 
   test("render with items", () => {
-    useSelector.mockImplementation((fn) => fn(mockedItemsReduxState));
+    mocked(useSelector).mockImplementation((fn) => fn(mockedItemsReduxState));
     const component = shallow(<Form />);
     const ListItems = component.find(ListItem);
     const SortItems = component.find(Sort);
@@ -97,24 +98,26 @@ describe("Form component", () => {
       },
     };
 
-    useSelector.mockImplementationOnce((fn) => fn(mockedItemsReduxState));
+    mocked(useSelector).mockImplementationOnce((fn) =>
+      fn(mockedItemsReduxState)
+    );
 
     const component = shallow(<Form />);
     let SortItem = component.find(Sort);
 
-    expect(FormActions.changeSorting.mock.calls.length).toEqual(0);
+    expect(mocked(FormActions.changeSorting).mock.calls.length).toEqual(0);
 
     const onChangeSorting = SortItem.prop("onChange");
     onChangeSorting(availableSortingSystem.dateAsc);
 
-    expect(FormActions.changeSorting.mock.calls.length).toEqual(1);
+    expect(mocked(FormActions.changeSorting).mock.calls.length).toEqual(1);
     expect(FormActions.changeSorting).toHaveBeenCalledWith(
       availableSortingSystem.dateAsc
     );
 
     onChangeSorting(availableSortingSystem.dateDesc);
 
-    expect(FormActions.changeSorting.mock.calls.length).toEqual(2);
+    expect(mocked(FormActions.changeSorting).mock.calls.length).toEqual(2);
     expect(FormActions.changeSorting).toHaveBeenCalledWith(
       availableSortingSystem.dateDesc
     );
@@ -123,14 +126,14 @@ describe("Form component", () => {
   });
 
   test("list item click", () => {
-    useSelector.mockImplementation((fn) => fn(mockedItemsReduxState));
+    mocked(useSelector).mockImplementation((fn) => fn(mockedItemsReduxState));
     const component = shallow(<Form />);
     let ListItems = component.find(ListItem);
 
     expect(ListItems.at(0).prop("selected")).toEqual(false);
     expect(ListItems.at(1).prop("selected")).toEqual(false);
 
-    const callback = (index) => ListItems.at(index).prop("selectItem");
+    const callback = (index: number) => ListItems.at(index).prop("selectItem");
     callback(0)();
 
     ListItems = component.find(ListItem);
@@ -161,7 +164,7 @@ describe("Form component", () => {
       })),
     });
 
-    useSelector.mockImplementation((fn) => fn(mockedItemsReduxState));
+    mocked(useSelector).mockImplementation((fn) => fn(mockedItemsReduxState));
     const component = mount(<Form />);
     let ListItems = component.find(ListItem);
     const firstListItem = ListItems.at(0);
@@ -170,15 +173,15 @@ describe("Form component", () => {
 
     const firstListItemRemoveButton = firstListItem.find(Button);
     expect(stopPropagationSpy.mock.calls.length).toEqual(0);
-    expect(FormActions.removeItem.mock.calls.length).toEqual(0);
+    expect(mocked(FormActions.removeItem).mock.calls.length).toEqual(0);
 
     firstListItemRemoveButton.simulate("click", {
       stopPropagation: stopPropagationSpy,
     });
 
     expect(stopPropagationSpy.mock.calls.length).toEqual(1);
-    expect(FormActions.removeItem.mock.calls.length).toEqual(1);
-    expect(FormActions.removeItem).toHaveBeenCalledWith(1);
+    expect(mocked(FormActions.removeItem).mock.calls.length).toEqual(1);
+    expect(mocked(FormActions.removeItem)).toHaveBeenCalledWith(1);
 
     component.unmount();
   });

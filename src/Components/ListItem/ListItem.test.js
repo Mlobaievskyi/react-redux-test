@@ -1,10 +1,10 @@
-// @flow
-
 import React from "react";
-import ListItem from "./";
+import { mocked } from "ts-jest/utils";
 import cn from "classnames";
 import dayjs from "dayjs";
 import { shallow } from "enzyme";
+
+import ListItem from ".";
 
 const mockedListItem = {
   name: "Test name",
@@ -18,12 +18,12 @@ jest.mock("dayjs");
 describe("ListItem component tests", () => {
   beforeEach(() => {
     cn.mockReturnValue("testClassName");
-    dayjs.mockReturnValue({ format: () => "today" });
+    mocked(dayjs).mockReturnValue({ format: () => "today" });
   });
 
   afterEach(() => {
     cn.mockReset();
-    dayjs.mockReset();
+    mocked(dayjs).mockReset();
   });
 
   test("renders itself", () => {

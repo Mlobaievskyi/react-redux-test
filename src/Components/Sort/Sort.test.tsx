@@ -4,7 +4,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { Select } from "antd";
 
-import Sort from "./";
+import Sort from ".";
 
 const { Option } = Select;
 
@@ -14,7 +14,7 @@ describe("Sort component", () => {
 
     const props = {
       options: [],
-      defaultValue: "randomDefaultValue",
+      defaultValue: "test",
       onChange: onChangeSpy,
     };
 
@@ -39,8 +39,8 @@ describe("Sort component", () => {
 
     const props = {
       options: selectOptions,
-      defaultValue: "randomDefaultValue",
-      onChange: (x) => x,
+      defaultValue: "test",
+      onChange: () => null,
     };
 
     const component = shallow(<Sort {...props} />);

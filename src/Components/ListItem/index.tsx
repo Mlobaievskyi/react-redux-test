@@ -1,5 +1,3 @@
-// @flow
-
 import React from "react";
 import dayjs from "dayjs";
 import { Radio } from "antd";

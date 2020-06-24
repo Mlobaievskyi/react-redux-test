@@ -1,10 +1,8 @@
-// @flow
-
 export const createReducer = (
-  initialState: *,
-  handlers: *,
-  finalizer: (*) => * = (x) => x
-): Object => (state: * = initialState, action: *) => {
+  initialState: { items: Object[] },
+  handlers: { [x: string]: any },
+  finalizer?: (arg0: any) => any
+): Object => (state: any, action: any) => {
   if (action.type) {
     const handler = handlers[action.type];
     if (handler) {
@@ -12,7 +10,9 @@ export const createReducer = (
       if (result === null) {
         return state;
       }
-      return finalizer({ ...state, ...result });
+      if (finalizer) {
+        return finalizer({ ...state, ...result });
+      }
     }
   }
   return state;

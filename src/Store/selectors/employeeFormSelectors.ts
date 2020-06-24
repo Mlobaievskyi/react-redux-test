@@ -1,17 +1,31 @@
-// @flow
-
 import { createSelector } from "reselect";
 import dayjs from "dayjs";
 
 import { availableSortingSystem } from "Constants/sorting";
 
-export const selectEmployeeFormItems = ({ form }: Object) => form.items;
-export const selectEmployeeFormSorting = ({ form }: Object) => form.sorting;
+type Items = [
+  {
+    timestamp: Date;
+    name: string;
+    id: string;
+  }
+];
 
-export const selectItems: Object = createSelector<*, *, *, *, *, *>(
+export const stateSelector = (state: any) => state.form;
+
+export const selectEmployeeFormItems = createSelector(
+  stateSelector,
+  (form) => form.items
+);
+export const selectEmployeeFormSorting = createSelector(
+  stateSelector,
+  (form) => form.sorting as string
+);
+
+export const selectItems = createSelector(
   selectEmployeeFormItems,
   selectEmployeeFormSorting,
-  (items, sorting) =>
+  (items: Items, sorting: string) =>
     items.sort((a, b) => {
       switch (sorting) {
         case availableSortingSystem.dateAsc:

@@ -1,6 +1,6 @@
 {
   "extends": ["eslint-config-react-app"],
-  "plugins": ["react-hooks", "@babel/preset-flow"],
+  "plugins": ["react-hooks", "@babel/preset-typescript"],
   "env": {
     "jest": true,
     "browser": true

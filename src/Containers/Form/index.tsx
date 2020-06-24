@@ -35,7 +35,7 @@ export default () => {
   }, []);
 
   const removeItem = useCallback(
-    (id) => (event) => {
+    (id) => (event: { stopPropagation: () => void }) => {
       event.stopPropagation();
       dispatch(FormActions.removeItem(id));
     },
