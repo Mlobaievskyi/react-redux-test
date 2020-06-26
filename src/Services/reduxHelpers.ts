@@ -1,7 +1,11 @@
-export const createReducer = (initialState: any, handlers: any) => (
-  state = initialState,
-  action: any
-) => {
+import type { formReducerInitialState } from "Store/reducers/formReducer";
+
+type initialStateType = formReducerInitialState;
+
+export const createReducer = (
+  initialState: initialStateType,
+  handlers: any
+) => (state = initialState, action: any) => {
   if (action.type) {
     const handler = handlers[action.type];
     if (handler) {

@@ -1,14 +1,14 @@
 import { FormTypes as Types } from "Store/actions/formActions";
 import { createReducer } from "Services/reduxHelpers";
 
-type initialStateType = {
+export interface formReducerInitialState {
   items: { id: number; name: string; timestamp: Date }[];
   sorting: string;
-};
+}
 
 const initDate = new Date();
 
-export const initialState: initialStateType = {
+export const initialState: formReducerInitialState = {
   items: [
     {
       name: "Last name",

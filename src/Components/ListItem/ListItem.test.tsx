@@ -18,7 +18,7 @@ jest.mock("dayjs");
 describe("ListItem component tests", () => {
   beforeEach(() => {
     cn.mockReturnValue("testClassName");
-    mocked(dayjs).mockReturnValue({ format: () => "today" });
+    mocked(dayjs).mockReturnValue({ format: () => "today" } as any);
   });
 
   afterEach(() => {
